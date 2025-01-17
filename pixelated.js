@@ -1,3 +1,9 @@
+/*
+ *  Pixelated
+ *  Copyright (c) Michael Kolesidis <michael.kolesidis@gmail.com>
+ *  GNU Affero General Public License v3.0
+ */
+
 const gridSize = { width: 12, height: 13 };
 const colors = ['red', 'blue', 'green', 'yellow', 'purple', '#ffa100'];
 const maxMoves = 22;
@@ -8,7 +14,7 @@ let movesLeft = maxMoves;
 const boardElement = document.getElementById('board');
 const controlsElement = document.getElementById('controls');
 const statusElement = document.getElementById('status');
-const restartButton = document.getElementById('restart-btn');
+const restartButton = document.getElementById('restart-button');
 
 function initGame() {
   grid = Array.from({ length: gridSize.height }, () =>
@@ -40,7 +46,7 @@ function renderControls() {
   controlsElement.innerHTML = '';
   colors.forEach((color) => {
     const button = document.createElement('button');
-    button.className = 'color-btn';
+    button.className = 'color-button';
     button.style.backgroundColor = color;
     button.addEventListener('click', () => floodFill(color));
     controlsElement.appendChild(button);
@@ -74,10 +80,10 @@ function floodFill(newColor) {
   updateStatus();
 
   if (checkWin()) {
-    statusElement.textContent = `You won with ${movesLeft} moves left!`;
+    statusElement.innerHTML = `You won with ${movesLeft} moves left!`;
     disableControls();
   } else if (movesLeft <= 0) {
-    statusElement.textContent = `Game over! Out of moves.`;
+    statusElement.innerHTML = `Game over! Out of moves.`;
     disableControls();
   }
 }
@@ -88,20 +94,44 @@ function checkWin() {
 }
 
 function updateStatus() {
-  statusElement.textContent = `${movesLeft} moves left`;
+  if (movesLeft === 1) {
+    statusElement.innerHTML = `1move left`;
+  } else {
+    statusElement.innerHTML = `${movesLeft} moves left`;
+  }
 }
 
 function disableControls() {
   controlsElement
     .querySelectorAll('button')
-    .forEach((btn) => (btn.disabled = true));
+    .forEach((button) => (button.disabled = true));
 }
 
 restartButton.addEventListener('click', () => {
   initGame();
   controlsElement
     .querySelectorAll('button')
-    .forEach((btn) => (btn.disabled = false));
+    .forEach((button) => (button.disabled = false));
 });
 
 initGame();
+
+// Help
+const helpButton = document.getElementById('help-button');
+const helpContainer = document.getElementById('help-container');
+const closeButton = document.getElementById('close-button');
+
+helpButton.addEventListener('click', () => {
+  helpContainer.classList.remove('hidden');
+  helpContainer.classList.add('visible');
+});
+
+closeButton.addEventListener('click', () => {
+  helpContainer.classList.add('hidden');
+  helpContainer.classList.remove('visible');
+});
+
+// Prevent left click
+document.addEventListener('contextmenu', function (event) {
+  event.preventDefault();
+});
