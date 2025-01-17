@@ -169,3 +169,18 @@ main {
   font-size: 0.85em;
   margin-top: 5px;
 }
+
+/* Desktop */
+@media (min-width: 800px) {
+  html,
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  main {
+    min-width: 500px;
+  }
+}
