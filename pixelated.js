@@ -80,8 +80,12 @@ function floodFill(newColor) {
   updateStatus();
 
   if (checkWin()) {
-    statusElement.innerHTML = `You won with ${movesLeft} moves left!`;
-    disableControls();
+    if (movesLeft === 1) {
+      statusElement.innerHTML = `You won with 1 move left!`;
+    } else {
+      statusElement.innerHTML = `You won with ${movesLeft} moves left!`;
+      disableControls();
+    }
   } else if (movesLeft <= 0) {
     statusElement.innerHTML = `Game over! Out of moves.`;
     disableControls();
@@ -95,7 +99,7 @@ function checkWin() {
 
 function updateStatus() {
   if (movesLeft === 1) {
-    statusElement.innerHTML = `1move left`;
+    statusElement.innerHTML = `1 move left`;
   } else {
     statusElement.innerHTML = `${movesLeft} moves left`;
   }
