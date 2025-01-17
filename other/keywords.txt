@@ -11,3 +11,4 @@ online-game
 blackberry-game
 blackberry
 pixel-game
+wiphala
