@@ -5,7 +5,7 @@
  */
 
 const gridSize = { width: 12, height: 13 };
-const colors = ['red', 'blue', 'green', 'yellow', 'purple', '#ffa100'];
+const colors = ['blue', 'red', 'green', 'yellow', '#ffa100', 'purple'];
 const maxMoves = 22;
 
 let grid = [];
