@@ -5,41 +5,60 @@
  */
 
 (() => {
-  const gridSize = { width: 12, height: 13 };
-  const colors = ['blue', 'red', 'green', 'yellow', '#ffa100', 'purple'];
-  const maxMoves = 22;
+  // Constants
+  const GRID_SIZE = { width: 12, height: 13 };
+  const COLORS = [
+    '#0000ff', // Blue
+    '#ff0000', // Red
+    '#008000', // Green
+    '#ffff00', // Yellow
+    '#ffa500', // Orange
+    '#800080', // Purple
+  ];
+  const MAX_MOVES = 22;
 
+  // Game State
   let grid = [];
-  let movesLeft = maxMoves;
+  let movesLeft = MAX_MOVES;
+  let winningStreak = 0;
 
+  // DOM Elements
   const boardElement = document.getElementById('board');
   const controlsElement = document.getElementById('controls');
   const statusElement = document.getElementById('status');
-  const restartButton = document.getElementById('restart-button');
+  const winningStreakElement = document.getElementById('winning-streak');
+  const newButton = document.getElementById('new-button');
   const helpButton = document.getElementById('help-button');
   const helpContainer = document.getElementById('help-container');
-  const closeButton = document.getElementById('close-button');
+  const helpTitle = document.getElementById('help-title');
+  const helpDescription = document.getElementById('help-description');
+  const helpObjective = document.getElementById('help-objective');
+  const helpInstructions = document.getElementById('help-instructions');
+  const helpControls = document.getElementById('help-controls');
+  const backButton = document.getElementById('back-button');
+  const copyright = document.getElementById('copyright');
 
-  const toggleHelpModal = (isVisible) => {
-    helpContainer.classList.toggle('hidden', !isVisible);
-    helpContainer.classList.toggle('visible', isVisible);
-  };
-
-  function initGame() {
-    grid = Array.from({ length: gridSize.height }, () =>
-      Array.from(
-        { length: gridSize.width },
-        () => colors[Math.floor(Math.random() * colors.length)]
-      )
-    );
+  // Initialize the Game
+  const initGame = () => {
+    grid = generateGrid();
     renderGrid();
     renderControls();
-    movesLeft = maxMoves;
-    updateStatus();
-  }
+    resetGame();
+  };
 
-  function renderGrid() {
-    boardElement.style.gridTemplateColumns = `repeat(${gridSize.width}, 1fr)`;
+  // Generate the initial grid with random colors
+  const generateGrid = () => {
+    return Array.from({ length: GRID_SIZE.height }, () =>
+      Array.from(
+        { length: GRID_SIZE.width },
+        () => COLORS[Math.floor(Math.random() * COLORS.length)]
+      )
+    );
+  };
+
+  // Render the grid to the board
+  const renderGrid = () => {
+    boardElement.style.gridTemplateColumns = `repeat(${GRID_SIZE.width}, 1fr)`;
     boardElement.innerHTML = grid
       .flatMap((row, y) =>
         row.map(
@@ -48,26 +67,42 @@
         )
       )
       .join('');
-  }
+  };
 
-  function renderControls() {
+  // Render the game controls
+  const renderControls = () => {
     // Render color buttons
-    controlsElement.innerHTML = colors
-      .map(
-        (color) =>
-          `<button class="color-button" style="background-color:${color}" data-color="${color}"></button>`
-      )
-      .join('');
+    controlsElement.innerHTML = COLORS.map(
+      (color) =>
+        `<button class="color-button" style="background-color:${color}" data-color="${color}"></button>`
+    ).join('');
     Array.from(controlsElement.children).forEach((button) =>
       button.addEventListener('click', () => floodFill(button.dataset.color))
     );
 
-    // Set up help modal functionality
+    // Set up help modal
     helpButton.addEventListener('click', () => toggleHelpModal(true));
-    closeButton.addEventListener('click', () => toggleHelpModal(false));
-  }
+    backButton.addEventListener('click', () => toggleHelpModal(false));
 
-  function floodFill(newColor) {
+    // Set texts
+    newButton.textContent = TEXTS.NEW_BUTTON;
+    helpTitle.textContent = TEXTS.HELP_TITLE;
+    helpDescription.textContent = TEXTS.HELP_DESCRIPTION;
+    helpObjective.textContent = TEXTS.HELP_OBJECTIVE;
+    helpInstructions.textContent = TEXTS.HELP_INSTRUCTIONS;
+    helpControls.textContent = TEXTS.HELP_CONTROLS;
+    backButton.textContent = TEXTS.BACK_BUTTON;
+    copyright.innerHTML = TEXTS.COPYRIGHT;
+  };
+
+  // Toggle help modal visibility
+  const toggleHelpModal = (isVisible) => {
+    helpContainer.classList.toggle('hidden', !isVisible);
+    helpContainer.classList.toggle('visible', isVisible);
+  };
+
+  // Flood fill algorithm
+  const floodFill = (newColor) => {
     const oldColor = grid[0][0];
     if (newColor === oldColor || movesLeft <= 0) return;
 
@@ -75,8 +110,8 @@
       if (
         x < 0 ||
         y < 0 ||
-        x >= gridSize.width ||
-        y >= gridSize.height ||
+        x >= GRID_SIZE.width ||
+        y >= GRID_SIZE.height ||
         grid[y][x] !== oldColor
       )
         return;
@@ -93,33 +128,57 @@
     updateStatus();
 
     if (checkWin()) {
-      statusElement.textContent = `You won with ${
-        movesLeft === 1 ? '1 move' : `${movesLeft} moves`
-      } left!`;
-      disableControls();
+      updateWinningStreak();
     } else if (movesLeft <= 0) {
-      statusElement.textContent = `Game over! Out of moves.`;
-      disableControls();
+      endGame(TEXTS.LOSS_MESSAGE);
     }
-  }
+  };
 
-  function checkWin() {
+  // Check if the game is won
+  const checkWin = () => {
     return grid.every((row) => row.every((cell) => cell === grid[0][0]));
-  }
+  };
 
-  function updateStatus() {
-    statusElement.textContent = `${movesLeft} move${
-      movesLeft === 1 ? '' : 's'
-    } left`;
-  }
+  // Update the status text
+  const updateStatus = () => {
+    statusElement.textContent = TEXTS.MOVES_LEFT(movesLeft);
+  };
 
-  function disableControls() {
+  // Update winning streak and display message
+  const updateWinningStreak = () => {
+    winningStreak++;
+    winningStreakElement.classList.remove('hidden');
+    winningStreakElement.textContent = `${TEXTS.WINNING_STREAK} ${winningStreak}`;
+    statusElement.textContent = TEXTS.WIN_MESSAGE(movesLeft);
+    disableControls();
+  };
+
+  // End game with provided message
+  const endGame = (message) => {
+    statusElement.textContent = message;
+    disableControls();
+  };
+
+  // Disable color controls after game over or win
+  const disableControls = () => {
     Array.from(controlsElement.children).forEach(
       (button) => (button.disabled = true)
     );
-  }
+  };
 
-  restartButton.addEventListener('click', initGame);
+  // Reset game state
+  const resetGame = () => {
+    movesLeft = MAX_MOVES;
+    updateStatus();
+    winningStreakElement.classList.add('hidden'); // Hide streak on game start
+  };
 
+  // Restart game on button click
+  newButton.addEventListener('click', initGame);
+
+  // Disable context menu (right-click) on the board
+  boardElement.addEventListener('contextmenu', (e) => e.preventDefault());
+
+  // Start the game
   initGame();
 })();

@@ -30,6 +30,7 @@ body {
 
 header {
   margin-bottom: 2.55px;
+  height: 50px;
 }
 
 #title {
@@ -50,6 +51,7 @@ main {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  height: 42px;
   padding: 5px;
   box-sizing: border-box;
 }
@@ -62,7 +64,7 @@ main {
 }
 
 #help-button,
-#restart-button {
+#new-button {
   text-align: center;
   padding: 5px 0;
   font-size: 1em;
@@ -72,6 +74,7 @@ main {
   border: 1px solid var(--white);
   border-radius: 5px;
   width: 80px;
+  height: 32px;
 }
 
 #help-button {
@@ -118,6 +121,10 @@ main {
   display: flex;
 }
 
+#winning-streak {
+  margin-top: 2px;
+}
+
 #help-container {
   position: fixed;
   top: 0;
@@ -152,7 +159,7 @@ main {
   text-align: left;
 }
 
-#close-button {
+#back-button {
   background-color: var(--black);
   color: var(--white);
   border: 1px solid var(--white);
@@ -165,7 +172,7 @@ main {
   margin-bottom: 20px;
 }
 
-#help-footer {
+#copyright {
   font-size: 0.85em;
   margin-top: 5px;
 }
