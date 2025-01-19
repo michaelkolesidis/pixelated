@@ -9,7 +9,9 @@
   padding: 0;
   font-family: 'Inter', sans-serif;
   color: var(--white);
+  background-color: var(--black);
   overflow: hidden;
+  box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -21,11 +23,6 @@
   -khtml-user-drag: none;
   -moz-user-drag: none;
   -o-user-drag: none;
-}
-
-html,
-body {
-  background-color: var(--black);
 }
 
 header {
@@ -53,7 +50,6 @@ main {
   width: 100%;
   height: 42px;
   padding: 5px;
-  box-sizing: border-box;
 }
 
 #button-container {
@@ -69,8 +65,6 @@ main {
   padding: 5px 0;
   font-size: 1em;
   cursor: pointer;
-  background-color: var(--black);
-  color: var(--white);
   border: 1px solid var(--white);
   border-radius: 5px;
   width: 80px;
@@ -87,13 +81,11 @@ main {
   width: 100%;
   max-width: 100vw;
   aspect-ratio: 12 / 16;
-  box-sizing: border-box;
 }
 
 .cell {
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
 }
 
 #controls {
@@ -101,7 +93,7 @@ main {
   grid-template-columns: repeat(6, 1fr);
   width: 100%;
   gap: 5px;
-  padding: 10px;
+  padding-top: 10px;
 }
 
 .color-button {
@@ -110,7 +102,6 @@ main {
   border: 2px solid var(--white);
   border-radius: 5px;
   cursor: pointer;
-  box-sizing: border-box;
 }
 
 .hidden {
@@ -138,14 +129,11 @@ main {
 }
 
 #help-content {
-  background-color: var(--black);
-  color: var(--white);
   padding: 20px;
   border-radius: 15px;
   width: 90%;
   max-width: 400px;
   text-align: center;
-  box-sizing: border-box;
 }
 
 #help-content h2 {
@@ -160,8 +148,6 @@ main {
 }
 
 #back-button {
-  background-color: var(--black);
-  color: var(--white);
   border: 1px solid var(--white);
   border-radius: 5px;
   padding: 5px 10px;

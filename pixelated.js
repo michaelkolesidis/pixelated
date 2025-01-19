@@ -144,19 +144,25 @@
     statusElement.textContent = TEXTS.MOVES_LEFT(movesLeft);
   };
 
-  // Update winning streak and display message
+  // Update winning streak
   const updateWinningStreak = () => {
     winningStreak++;
     winningStreakElement.classList.remove('hidden');
     winningStreakElement.textContent = `${TEXTS.WINNING_STREAK} ${winningStreak}`;
-    statusElement.textContent = TEXTS.WIN_MESSAGE(movesLeft);
     disableControls();
+    endGame(TEXTS.WIN_MESSAGE(movesLeft));
   };
 
   // End game with provided message
   const endGame = (message) => {
     statusElement.textContent = message;
     disableControls();
+
+    if (message === TEXTS.LOSS_MESSAGE) {
+      winningStreak = 0;
+    } else {
+      winningStreakElement.classList.remove('hidden');
+    }
   };
 
   // Disable color controls after game over or win
@@ -170,7 +176,7 @@
   const resetGame = () => {
     movesLeft = MAX_MOVES;
     updateStatus();
-    winningStreakElement.classList.add('hidden'); // Hide streak on game start
+    winningStreakElement.classList.add('hidden');
   };
 
   // Restart game on button click
