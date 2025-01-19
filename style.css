@@ -2,6 +2,7 @@
   --white: #eeeeee;
   --black: #111111;
   --transparent-black: rgba(0, 0, 0, 0.8);
+  --thin-border: 1px solid var(--white);
 }
 
 * {
@@ -26,7 +27,7 @@
 }
 
 header {
-  margin-bottom: 2.55px;
+  margin: 2px 0 2.55px 0;
   height: 50px;
 }
 
@@ -65,7 +66,7 @@ main {
   padding: 5px 0;
   font-size: 1em;
   cursor: pointer;
-  border: 1px solid var(--white);
+  border: var(--thin-border);
   border-radius: 5px;
   width: 80px;
   height: 32px;
@@ -113,7 +114,7 @@ main {
 }
 
 #winning-streak {
-  margin-top: 2px;
+  margin-top: 12px;
 }
 
 #help-container {
@@ -148,7 +149,7 @@ main {
 }
 
 #back-button {
-  border: 1px solid var(--white);
+  border: var(--thin-border);
   border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;

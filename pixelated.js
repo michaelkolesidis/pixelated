@@ -26,7 +26,7 @@
   const boardElement = document.getElementById('board');
   const controlsElement = document.getElementById('controls');
   const statusElement = document.getElementById('status');
-  const winningStreakElement = document.getElementById('winning-streak');
+  const winningStreakDisplay = document.getElementById('winning-streak');
   const newButton = document.getElementById('new-button');
   const helpButton = document.getElementById('help-button');
   const helpContainer = document.getElementById('help-container');
@@ -147,8 +147,8 @@
   // Update winning streak
   const updateWinningStreak = () => {
     winningStreak++;
-    winningStreakElement.classList.remove('hidden');
-    winningStreakElement.textContent = `${TEXTS.WINNING_STREAK} ${winningStreak}`;
+    winningStreakDisplay.classList.remove('hidden');
+    winningStreakDisplay.textContent = `${TEXTS.WINNING_STREAK} ${winningStreak}`;
     disableControls();
     endGame(TEXTS.WIN_MESSAGE(movesLeft));
   };
@@ -161,7 +161,7 @@
     if (message === TEXTS.LOSS_MESSAGE) {
       winningStreak = 0;
     } else {
-      winningStreakElement.classList.remove('hidden');
+      winningStreakDisplay.classList.remove('hidden');
     }
   };
 
@@ -176,7 +176,7 @@
   const resetGame = () => {
     movesLeft = MAX_MOVES;
     updateStatus();
-    winningStreakElement.classList.add('hidden');
+    winningStreakDisplay.classList.add('hidden');
   };
 
   // Restart game on button click
