@@ -6,13 +6,13 @@ An addictive game of strategy and colour!
 
 ## About
 
-Pixelated is a puzzle-based strategy game that requires a mixture of skill and luck in order to accomplish. The object of the game is to change the colour of the squares until the entire screen is a single solid colour.
+Pixelated is a puzzle-based strategy game that requires a mix of skill and luck. The objective is to change the colour of the squares until the entire screen is a single solid colour.
 
 ![Screenshot](./screenshots/screenshot-small.jpeg)
 
 ## How To Play
 
-Starting with the square in the upper left corner you can change the colour of the blocks in order to match that of the surrounding squares. This is done repeatedly until the entire screen is a single colour. The object of the game is to clear the screen in as few moves as possible. Under the default settings you must do so in under 22 moves in order to win. The game is controlled by the large colored blocks at the bottom of the screen.
+Starting with the square in the upper left corner you can change the colour of the blocks in order to match that of the surrounding squares. This is done repeatedly until the entire screen is one colour. The goal is to clear the screen in as few moves as possible. Under the default settings, you must do so in under 22 moves to win. The game is controlled by the large coloured blocks at the bottom of the screen.
 
 ## Bug Reports & Contributions
 
@@ -20,7 +20,6 @@ Let me know if you find **bugs** or encounter any issues. Feel free to open an i
 
 ## Technologies Used
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://en.wikipedia.org/wiki/JavaScript"><img src="https://github.com/michaelkolesidis/tech-icons/blob/main/icons/javascript/javascript-original.svg" height="50px" /></a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://en.wikipedia.org/wiki/CSS"><img src="https://github.com/michaelkolesidis/tech-icons/blob/main/icons/css3/css3-plain.svg" height="50px" /></a>

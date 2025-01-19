@@ -12,11 +12,11 @@ const TEXTS = {
     `You won with ${moves === 1 ? '1 move' : `${moves} moves`} left!`,
   HELP_TITLE: 'How to Play',
   HELP_DESCRIPTION:
-    'Pixelated is a puzzle-based strategy game that requires a mixture of skill and luck in order to accomplish.',
+    'Pixelated is a puzzle-based strategy game that requires a mix of skill and luck.',
   HELP_OBJECTIVE:
-    'The object of the game is to change the colour of the squares until the entire screen is a single solid colour.',
+    'The objective is to change the colour of the squares until the entire screen is a single solid colour.',
   HELP_INSTRUCTIONS:
-    'Starting with the square in the upper left corner you can change the colour of the blocks in order to match that of the surrounding squares. This is done repeatedly until the entire screen is a single colour. You must do this in under 22 moves to win!',
+    'Starting with the square in the upper left corner you can change the colour of the blocks in order to match that of the surrounding squares. This is done repeatedly until the entire screen is one colour. The goal is to clear the screen in as few moves as possible. Under the default settings, you must do so in under 22 moves to win.',
   HELP_CONTROLS:
     'The game is controlled by the large colored blocks at the bottom of the screen.',
   BACK_BUTTON: 'Back',
