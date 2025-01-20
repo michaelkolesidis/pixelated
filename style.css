@@ -1,5 +1,10 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('assets/fonts/inter.woff2') format('woff2');
+}
+
 :root {
-  --white: #eeeeee;
+  --white: #fafafa;
   --black: #111111;
   --transparent-black: rgba(0, 0, 0, 0.8);
   --thin-border: 1px solid var(--white);
@@ -35,6 +40,7 @@ header {
   text-align: center;
   font-size: 1.75em;
   margin: 1vh 0;
+  font-weight: 700;
 }
 
 main {

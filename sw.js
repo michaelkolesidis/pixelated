@@ -4,7 +4,7 @@
  *  GNU Affero General Public License v3.0
  */
 
-const CACHE_NAME = 'pixelated-cache-v1';
+const CACHE_NAME = 'pixelated-cache';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -14,7 +14,7 @@ const urlsToCache = [
   '/assets/favicon.ico',
   '/assets/apple-touch-icon.png',
   '/assets/logo.svg',
-  // Add other assets here
+  '/manifest.webmanifest',
 ];
 
 self.addEventListener('install', (event) => {
