@@ -14,6 +14,7 @@ const urlsToCache = [
   '/assets/favicon.ico',
   '/assets/apple-touch-icon.png',
   '/assets/logo.svg',
+  '/assets/fonts/inter.woff2',
   '/manifest.webmanifest',
 ];
 

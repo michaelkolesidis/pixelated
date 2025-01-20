@@ -14,6 +14,12 @@ Pixelated is a puzzle-based strategy game that requires a mix of skill and luck.
 
 Starting with the square in the upper left corner you can change the colour of the blocks in order to match that of the surrounding squares. This is done repeatedly until the entire screen is one colour. The goal is to clear the screen in as few moves as possible. Under the default settings, you must do so in under 22 moves to win. The game is controlled by the large coloured blocks at the bottom of the screen.
 
+## Features
+
+- **Cross-Platform Optimization**: Designed for both mobile and desktop
+- **Offline Play**: Install it as a Progressive Web Application (PWA) and play offline
+- **Winning Streak** : Keep track of your consecutive victories
+
 ## Reporting Bugs
 
 If you come across any bugs or issues, please let me know! Feel free to open an issue or submit a pull request. Thank you!
@@ -33,7 +39,7 @@ This game was developed using vanilla JavaScript, CSS, and HTML, with no externa
 
 Special thanks to [Ebscer](https://ebscer.com/) for creating the original Blackberry game, now sadly discontinued. This project serves as a tribute and spiritual successor.
 
-## See Also
+## Learn More
 
 Learn more about the flood fill algorithm, commonly used in tools like the bucket tool in image editing software, and in games:
 
