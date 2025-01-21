@@ -2,17 +2,17 @@
 
 ![Pixelated Logo](./assets/android-chrome-192x192.png)
 
-An addictive game of strategy and colour!
+An addictive game of strategy and color!
 
 ## About
 
-Pixelated is a puzzle-based strategy game that requires a mix of skill and luck. The objective is to change the colour of the squares until the entire screen is a single solid colour.
+Pixelated is a puzzle-based strategy game that requires a mix of skill and luck. The objective is to change the color of the squares until the entire screen is a single solid color.
 
 ![Screenshot](./screenshots/screenshot-small.png)
 
 ## How To Play
 
-Starting with the square in the upper left corner you can change the colour of the blocks in order to match that of the surrounding squares. This is done repeatedly until the entire screen is one colour. The goal is to clear the screen in as few moves as possible. Under the default settings, you must do so in under 22 moves to win. The game is controlled by the large coloured blocks at the bottom of the screen.
+Starting with the square in the upper left corner you can change the color of the blocks in order to match that of the surrounding squares. This is done repeatedly until the entire screen is one color. The goal is to clear the screen in as few moves as possible. You must do so in under 22 moves to win. The game is controlled by the color buttons at the bottom of the screen.
 
 ## Features
 

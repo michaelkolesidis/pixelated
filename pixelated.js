@@ -181,11 +181,14 @@
     winningStreakDisplay.classList.add('hidden');
   };
 
-  // Restart game on button click
+  // Restart the game with New button and N key
   newButton.addEventListener('click', initGame);
+  document.addEventListener('keydown', (e) => {
+    if (e.code === 'KeyN') initGame();
+  });
 
   // Disable context menu (right-click) on the board
-  boardElement.addEventListener('contextmenu', (e) => e.preventDefault());
+  document.addEventListener('contextmenu', (e) => e.preventDefault());
 
   // Start the game
   initGame();
