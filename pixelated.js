@@ -130,6 +130,11 @@
     // Set up help modal
     helpButton.addEventListener('click', () => toggleHelpModal(true));
     backButton.addEventListener('click', () => toggleHelpModal(false));
+    helpContainer.addEventListener('click', (e) => {
+      if (e.target === helpContainer) {
+        toggleHelpModal(false);
+      }
+    });
 
     // Set texts
     newButton.textContent = TEXTS[selectedLanguage].NEW_BUTTON;
