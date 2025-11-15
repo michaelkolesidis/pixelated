@@ -18,7 +18,8 @@
 (() => {
   // Constants
   const GRID_SIZE = { width: 12, height: 13 };
-  const COLORS = [
+  const MAX_MOVES = 22;
+  const CLASSIC_COLORS = [
     '#0000ff', // Blue
     '#ff0000', // Red
     '#008000', // Green
@@ -26,7 +27,18 @@
     '#ffa500', // Orange
     '#800080', // Purple
   ];
-  const MAX_MOVES = 22;
+  const MODERN_COLORS = [
+    '#f82553',
+    '#fb6640',
+    '#f8c421',
+    '#49cc5c',
+    '#2c7Ce5',
+    '#6434e9',
+  ];
+
+  // Defaults
+  let colors = CLASSIC_COLORS;
+  let selectedLanguage = 'en';
 
   // Game State
   let grid = [];
@@ -49,22 +61,44 @@
   const backButton = document.getElementById('back-button');
   const copyright = document.getElementById('copyright');
 
+  let gameOver = false;
+
   // Initialize the Game
   const initGame = () => {
+    if (!gameOver) {
+      updateWinningStreak(true);
+    }
+
     resetGame();
     grid = generateGrid();
     renderGrid();
     renderControls();
+
+    gameOver = false;
   };
 
-  // Generate the initial grid with random colors
+  newButton.addEventListener('click', initGame);
+  document.addEventListener('keydown', (e) => {
+    if (e.code === 'KeyN') initGame();
+  });
+
   const generateGrid = () => {
-    return Array.from({ length: GRID_SIZE.height }, () =>
+    const newGrid = Array.from({ length: GRID_SIZE.height }, () =>
       Array.from(
         { length: GRID_SIZE.width },
-        () => COLORS[Math.floor(Math.random() * COLORS.length)]
+        () => colors[Math.floor(Math.random() * colors.length)]
       )
     );
+
+    const topLeft = newGrid[0][0];
+    if (newGrid[0][1] === topLeft) {
+      newGrid[0][1] = colors.find((c) => c !== topLeft);
+    }
+    if (newGrid[1][0] === topLeft) {
+      newGrid[1][0] = colors.find((c) => c !== topLeft);
+    }
+
+    return newGrid;
   };
 
   // Render the grid to the board
@@ -83,10 +117,12 @@
   // Render the game controls
   const renderControls = () => {
     // Render color buttons
-    controlsElement.innerHTML = COLORS.map(
-      (color) =>
-        `<button class="color-button" style="background-color:${color}" data-color="${color}"></button>`
-    ).join('');
+    controlsElement.innerHTML = colors
+      .map(
+        (color) =>
+          `<button class="color-button" style="background-color:${color}" data-color="${color}"></button>`
+      )
+      .join('');
     Array.from(controlsElement.children).forEach((button) =>
       button.addEventListener('click', () => floodFill(button.dataset.color))
     );
@@ -96,14 +132,14 @@
     backButton.addEventListener('click', () => toggleHelpModal(false));
 
     // Set texts
-    newButton.textContent = TEXTS.NEW_BUTTON;
-    helpTitle.textContent = TEXTS.HELP_TITLE;
-    helpDescription.textContent = TEXTS.HELP_DESCRIPTION;
-    helpObjective.textContent = TEXTS.HELP_OBJECTIVE;
-    helpInstructions.textContent = TEXTS.HELP_INSTRUCTIONS;
-    helpControls.textContent = TEXTS.HELP_CONTROLS;
-    backButton.textContent = TEXTS.BACK_BUTTON;
-    copyright.innerHTML = TEXTS.COPYRIGHT;
+    newButton.textContent = TEXTS[selectedLanguage].NEW_BUTTON;
+    helpTitle.textContent = TEXTS[selectedLanguage].HELP_TITLE;
+    helpDescription.textContent = TEXTS[selectedLanguage].HELP_DESCRIPTION;
+    helpObjective.textContent = TEXTS[selectedLanguage].HELP_OBJECTIVE;
+    helpInstructions.textContent = TEXTS[selectedLanguage].HELP_INSTRUCTIONS;
+    helpControls.textContent = TEXTS[selectedLanguage].HELP_CONTROLS;
+    backButton.textContent = TEXTS[selectedLanguage].BACK_BUTTON;
+    copyright.innerHTML = TEXTS[selectedLanguage].COPYRIGHT;
   };
 
   // Toggle help modal visibility
@@ -139,9 +175,9 @@
     updateStatus();
 
     if (checkWin()) {
-      endGame(TEXTS.WIN_MESSAGE(movesLeft));
+      endGame(TEXTS[selectedLanguage].WIN_MESSAGE(movesLeft));
     } else if (movesLeft <= 0) {
-      endGame(TEXTS.LOSS_MESSAGE);
+      endGame(TEXTS[selectedLanguage].LOSS_MESSAGE);
     }
   };
 
@@ -152,7 +188,7 @@
 
   // Update the status text
   const updateStatus = () => {
-    statusElement.textContent = TEXTS.MOVES_LEFT(movesLeft);
+    statusElement.textContent = TEXTS[selectedLanguage].MOVES_LEFT(movesLeft);
   };
 
   // Update winning streak
@@ -162,7 +198,7 @@
     } else {
       winningStreak++;
       winningStreakDisplay.classList.remove('hidden');
-      winningStreakDisplay.textContent = `${TEXTS.WINNING_STREAK} ${winningStreak}`;
+      winningStreakDisplay.textContent = `${TEXTS[selectedLanguage].WINNING_STREAK} ${winningStreak}`;
     }
   };
 
@@ -170,8 +206,9 @@
   const endGame = (message) => {
     statusElement.textContent = message;
     disableControls();
+    gameOver = true;
 
-    if (message === TEXTS.LOSS_MESSAGE) {
+    if (message === TEXTS[selectedLanguage].LOSS_MESSAGE) {
       updateWinningStreak(true);
     } else {
       updateWinningStreak();
