@@ -86,8 +86,8 @@
     const newGrid = Array.from({ length: GRID_SIZE.height }, () =>
       Array.from(
         { length: GRID_SIZE.width },
-        () => colors[Math.floor(Math.random() * colors.length)]
-      )
+        () => colors[Math.floor(Math.random() * colors.length)],
+      ),
     );
 
     const topLeft = newGrid[0][0];
@@ -108,8 +108,8 @@
       .flatMap((row, y) =>
         row.map(
           (color, x) =>
-            `<div class="cell" style="background-color:${color}"></div>`
-        )
+            `<div class="cell" style="background-color:${color}"></div>`,
+        ),
       )
       .join('');
   };
@@ -120,11 +120,11 @@
     controlsElement.innerHTML = colors
       .map(
         (color) =>
-          `<button class="color-button" style="background-color:${color}" data-color="${color}"></button>`
+          `<button class="color-button" style="background-color:${color}" data-color="${color}"></button>`,
       )
       .join('');
     Array.from(controlsElement.children).forEach((button) =>
-      button.addEventListener('click', () => floodFill(button.dataset.color))
+      button.addEventListener('click', () => floodFill(button.dataset.color)),
     );
 
     // Set up help modal
@@ -223,7 +223,7 @@
   // Disable color controls after game over or win
   const disableControls = () => {
     Array.from(controlsElement.children).forEach(
-      (button) => (button.disabled = true)
+      (button) => (button.disabled = true),
     );
   };
 
